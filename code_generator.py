@@ -36,15 +36,20 @@ def main(argv):
             pathsToWrite = metadataInfo["paths"]
             pathsToWrite = pathsToWrite.split(",")
 
-        # TODO: for each file containing the metacode, generate the specific
-        # class for each language from the metadata file
+        if len(languages) != len(pathsToWrite):
+            print("The metadata provided is incorrect...")
+            print("Please review the metadata file!")
+            return
 
-        # modules = []
-        # for lang in langs:
-        #     modules.append(importlib.import_module("languages." + lang))
+        # pass the file containing the metacode to each module for
+        # every language specified
+        modules = []
+        for language in languages:
+            modules.append(importlib.import_module("languages." + language))
 
-        # for module in modules:
-        #     module.test()
+        for f in files:
+            for i in range(len(languages)):
+                modules[i].process(f, pathsToWrite[i])
 
 
 if __name__ == "__main__":
