@@ -35,6 +35,7 @@ def main(argv):
             languages = languages.split(",")
             pathsToWrite = metadataInfo["paths"]
             pathsToWrite = pathsToWrite.split(",")
+            projectName = metadataInfo["projectName"]
 
         if len(languages) != len(pathsToWrite):
             print("The metadata provided is incorrect...")
@@ -49,7 +50,7 @@ def main(argv):
 
         for f in files:
             for i in range(len(languages)):
-                modules[i].process(f, pathsToWrite[i])
+                modules[i].process(f, pathsToWrite[i], projectName)
 
 
 if __name__ == "__main__":
