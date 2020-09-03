@@ -1,0 +1,11 @@
+{
+    "serviceId": "int",
+    "nameEn": "string",
+    "nameFr": "string",
+    "nameIt": "string",
+    "nameRu": "string",
+    "descriptionEn": "string",
+    "descriptionFr": "string",
+    "descriptionIt": "string",
+    "descriptionRu": "string"
+}
