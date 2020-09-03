@@ -16,6 +16,8 @@ def main(argv):
             print("Please provide a valid path")
             return
 
+        # read the files in the provided path and select the metadata
+        # file from the rest of the files
         files = []
         for f in os.listdir(argv[0]):
             fileToAdd = os.path.join(argv[0], f)
@@ -25,14 +27,14 @@ def main(argv):
             else:
                 files.append(fileToAdd)
 
-        print(metadata)
-        for f in files:
-            print(f)
-        # TODO: read metadata.json for information about the languages to
+        # read metadata.json for information about the languages to
         # execute the script for and the paths to write the generated files to
-
-        # langs = input("provide the languages\n")
-        # langs = langs.split(",")
+        with open(metadata) as jsonMetadata:
+            metadataInfo = json.load(jsonMetadata)
+            languages = metadataInfo["languages"]
+            languages = languages.split(",")
+            pathsToWrite = metadataInfo["paths"]
+            pathsToWrite = pathsToWrite.split(",")
 
         # TODO: for each file containing the metacode, generate the specific
         # class for each language from the metadata file
